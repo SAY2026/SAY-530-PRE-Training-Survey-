@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>SAY Foundation | Pre-Training Survey (Complete)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f0f5ee; padding: 20px 16px 48px; color: #1a2f1a; }
+        .container { max-width: 950px; margin: 0 auto; }
+        .card { background: white; border-radius: 32px; padding: 24px 22px; margin-bottom: 24px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+        .header-card { background: #1a4f2b; color: white; text-align: center; border-radius: 36px; padding: 28px 20px; }
+        .badge { background: #ffcd3c; color: #1f532a; display: inline-block; padding: 6px 16px; border-radius: 60px; font-size: 0.75rem; font-weight: bold; margin-bottom: 16px; }
+        h2 { font-size: 1.3rem; margin: 20px 0 12px 0; color: #1a4f2b; border-left: 4px solid #2a7a3e; padding-left: 12px; }
+        label { font-weight: 600; font-size: 0.9rem; display: block; margin-top: 18px; margin-bottom: 6px; color: #1c3e1a; }
+        .required:after { content: "*"; color: #d43f1f; margin-left: 4px; }
+        input, select, textarea { width: 100%; padding: 12px 16px; font-size: 1rem; border: 1.5px solid #ddebe0; border-radius: 28px; font-family: inherit; margin-bottom: 4px; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #2a7a3e; box-shadow: 0 0 0 3px rgba(42,122,62,0.2); }
+        .options-group { background: #fafef8; border-radius: 24px; padding: 8px 14px; border: 1px solid #e2f0de; margin: 6px 0 12px; }
+        .option-item { display: flex; align-items: center; gap: 12px; margin: 10px 8px; }
+        .option-item input { width: 20px; height: 20px; accent-color: #2a7a3e; flex-shrink: 0; margin: 0; }
+        .option-item label { margin: 0; font-weight: normal; font-size: 0.94rem; display: inline; }
+        hr { margin: 20px 0; border: none; height: 1px; background: #e2eedd; }
+        .likert-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .likert-table th, .likert-table td { border: 1px solid #d9e8d3; padding: 10px 6px; text-align: center; vertical-align: middle; }
+        .likert-table th { background: #eaf5e5; font-weight: 600; }
+        .likert-table td:first-child { text-align: left; background: #fefef7; font-weight: 500; min-width: 240px; }
+        .likert-table input { width: 18px; height: 18px; margin: 0; accent-color: #2a7a3e; }
+        .scrollable { overflow-x: auto; margin: 16px 0; }
+        .btn { background: #1a4f2b; color: white; border: none; padding: 16px 20px; font-size: 1rem; font-weight: 600; border-radius: 60px; width: 100%; cursor: pointer; margin-top: 24px; }
+        .btn-secondary { background: white; color: #1a4f2b; border: 2px solid #1a4f2b; }
+        .flex-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+        .status-badge { background: #e9f3e4; border-radius: 40px; padding: 10px 18px; text-align: center; font-size: 0.85rem; margin-top: 16px; }
+        footer { text-align: center; font-size: 0.7rem; color: #6f8f68; margin-top: 20px; }
+        .alert-info { background: #eef5ea; border-left: 5px solid #2a7a3e; padding: 14px 18px; border-radius: 24px; font-size: 0.85rem; margin-bottom: 20px; }
+        .sub-section { background: #f9fdf7; border-radius: 20px; padding: 8px 12px 16px; margin: 12px 0; }
+        .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        @media (max-width: 600px) { .grid-2col { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-card">
+        <div class="badge">🔐 REAL-NAME · COMPLETE PRE-TRAINING SURVEY</div>
+        <h1>📋 SAY Foundation</h1>
+        <p>North District AI Teacher Training 2026 · 30 May 2026</p>
+        <p style="font-size:0.8rem; margin-top:6px;">English Version | All fields match official Word document</p>
+    </div>
+
+    <div class="card">
+        <div class="alert-info">
+            ✅ <strong>Complete survey</strong> — Includes all sections from the official pre-training questionnaire.<br>
+            📎 Data is stored locally. Trainer clicks <strong>"EXPORT ALL DATA (CSV)"</strong> to collect responses.
+        </div>
+
+        <form id="fullSurveyForm">
+            <!-- === CONSENT === -->
+            <h2>0. Consent</h2>
+            <div class="options-group">
+                <div class="option-item"><input type="checkbox" id="consent1" required> <label>I consent to participate in this survey.</label></div>
+                <div class="option-item"><input type="checkbox" id="consent2"> <label>I consent to anonymous use of my responses for SAY research and reports.</label></div>
+                <div class="option-item"><input type="checkbox" id="consent3"> <label>I consent to field observation of one of my lessons by the SAY team.</label></div>
+            </div>
+
+            <!-- === A. DEMOGRAPHICS === -->
+            <h2>A. Demographics</h2>
+            <label class="required">Training ID (from badge, e.g. N-202601)</label>
+            <input type="text" id="trainingId" placeholder="N-2026___" required>
+            <label class="required">Full Name (Real name)</label>
+            <input type="text" id="fullName" placeholder="First and Last name" required>
+            <label class="required">School</label>
+            <input type="text" id="school" placeholder="School name" required>
+            <label>Subject(s) you teach</label>
+            <input type="text" id="subjects" placeholder="e.g., Mathematics, Science, English">
+
+            <label class="required">A1. Age range</label>
+            <div class="options-group">
+                <div class="option-item"><input type="radio" name="age" value="20-29"> <label>20-29</label></div>
+                <div class="option-item"><input type="radio" name="age" value="30-39"> <label>30-39</label></div>
+                <div class="option-item"><input type="radio" name="age" value="40-49"> <label>40-49</label></div>
+                <div class="option-item"><input type="radio" name="age" value="50+"> <label>50+</label></div>
+            </div>
+
+            <label class="required">A2. Years of teaching experience</label>
+            <div class="options-group">
+                <div class="option-item"><input type="radio" name="experience" value="0-2"> <label>0-2 years</label></div>
+                <div class="option-item"><input type="radio" name="experience" value="3-5"> <label>3-5 years</label></div>
+                <div class="option-item"><input type="radio" name="experience" value="6-10"> <label>6-10 years</label></div>
+                <div class="option-item"><input type="radio" name="experience" value="11-20"> <label>11-20 years</label></div>
+                <div class="option-item"><input type="radio" name="experience" value="20+"> <label>20+ years</label></div>
+            </div>
+
+            <label class="required">A3. Gender</label>
+            <div class="options-group">
+                <div class="option-item"><input type="radio" name="gender" value="Male"> <label>Male</label></div>
+                <div class="option-item"><input type="radio" name="gender" value="Female"> <label>Female</label></div>
+                <div class="option-item"><input type="radio" name="gender" value="Other"> <label>Prefer to self-describe: <input type="text" id="genderOther" placeholder="describe" style="width:auto; display:inline-block; padding:6px; margin-left:8px;"></label></div>
+            </div>
+
+            <label class="required">★ A4. What ONE WORD best describes you as a teacher RIGHT NOW?</label>
+            <input type="text" id="oneWord" placeholder="e.g., Curious, Tired, Motivated, Hopeful" required>
+
+            <label class="required">A5. Do you see yourself mainly as a technology USER or CREATOR?</label>
+            <div class="options-group">
+                <div class="option-item"><input type="radio" name="userCreator" value="Mainly a USER"> <label>Mainly a USER — I use tools others made</label></div>
+                <div class="option-item"><input type="radio" name="userCreator" value="Mainly a CREATOR"> <label>Mainly a CREATOR — I make/adapt content myself</label></div>
+                <div class="option-item"><input type="radio" name="userCreator" value="Both equally"> <label>Both equally</label></div>
+            </div>
+
+            <!-- === B. TECHNOLOGY ACCESS === -->
+            <h2>B. Technology Access</h2>
+            <label>B1. Which devices do you personally own and use? (Select all)</label>
+            <div class="options-group">
+                <div class="option-item"><input type="checkbox" value="Basic phone"> <label>Basic phone (calls/texts)</label></div>
+                <div class="option-item"><input type="checkbox" value="Smartphone"> <label>Smartphone</label></div>
+                <div class="option-item"><input type="checkbox" value="Tablet"> <label>Tablet</label></div>
+                <div class="option-item"><input type="checkbox" value="Laptop/desktop"> <label>Laptop / desktop</label></div>
+                <div class="option-item"><input type="checkbox" value="None"> <label>None</label></div>
+            </div>
+
+            <label class="required">B2. At your school, how reliable is electricity?</label>
+            <div class="options-group">
+                <div class="option-item"><input type="radio" name="electricity" value="Always"> <label>Always</label></div>
+                <div class="option-item"><input type="radio" name="electricity" value="Most days"> <label>Most days</label></div>
+                <div class="option-item"><input type="radio" name="electricity" value="Sometimes"> <label>Sometimes</label></div>
+                <div class="option-item"><input type="radio" name="electricity" value="Rarely"> <label>Rarely</label></div>
+                <div class="option-item"><input type="radio" name="electricity" value="Never"> <label>Never</label></div>
+            </div>
+
+            <label class="required">B3. Have you ever used an AI tool? (ChatGPT, Claude, DeepSeek, Gemini)</label>
+            <div class="options-group">
+                <div class="option-item"><input type="radio" name="aiExperience" value="Never heard"> <label>Never heard of them</label></div>
+                <div class="option-item"><input type="radio" name="aiExperience" value="Heard never used"> <label>Heard but never used</label></div>
+                <div class="option-item"><input type="radio" name="aiExperience" value="Tried once or twice"> <label>Tried once or twice</label></div>
+                <div class="option-item"><input type="radio" name="aiExperience" value="Use occasionally"> <label>Use occasionally</label></div>
+                <div class="option-item"><input type="radio" name="aiExperience" value="Use regularly"> <label>Use regularly</label></div>
+            </div>
+
+            <!-- === C. TEACHING PRACTICE === -->
+            <h2>C. Teaching Practice</h2>
+            <label>C1. How do you usually prepare lessons? (Select all)</label>
+            <div class="options-group">
+                <div class="option-item"><input type="checkbox" value="Official syllabus/textbook"> <label>Official syllabus/textbook</label></div>
+                <div class="option-item"><input type="checkbox" value="My own past notes"> <label>My own past notes</label></div>
+                <div class="option-item"><input type="checkbox" value="Search online"> <label>Search online</label></div>
+                <div class="option-item"><input type="checkbox" value="AI tools"> <label>AI tools</label></div>
+                <div class="option-item"><input type="checkbox" value="Mentally, no notes"> <label>Mentally, no notes</label></div>
+                <div class="option-item"><input type="text" id="otherPrep" placeholder="Other (please specify)" style="margin-top:8px;"></div>
+            </div>
+
+            <label>C2. Your biggest teaching challenge today? (Select up to 3)</label>
+            <div class="options-group">
+                <div class="option-item"><input type="checkbox" value="Unreliable electricity"> <label>Unreliable electricity</label></div>
+                <div class="option-item"><input type="checkbox" value="Lack of teaching materials"> <label>Lack of teaching materials</label></div>
+                <div class="option-item"><input type="checkbox" value="Large class size"> <label>Large class size</label></div>
+                <div class="option-item"><input type="checkbox" value="Hard to make content engaging"> <label>Hard to make content engaging</label></div>
+                <div class="option-item"><input type="checkbox" value="Not enough prep time"> <label>Not enough prep time</label></div>
+                <div class="option-item"><input type="checkbox" value="Language barriers"> <label>Language barriers</label></div>
+                <div class="option-item"><input type="checkbox" value="Few training opportunities"> <label>Few training opportunities</label></div>
+            </div>
+
+            <!-- === D. SELF-EFFICACY SCALE (10 items) === -->
+            <h2>D. Self-Efficacy Scale (1=Strongly Disagree, 5=Strongly Agree)</h2>
+            <div class="scrollable">
+                <table class="likert-table" id="selfEfficacyTable">
+                    <thead><tr><th>Statement</th><th>1<br>Strongly Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly Agree</th></tr></thead>
+                    <tbody id="likertBody"></tbody>
+                </table>
+            </div>
+
+            <!-- === E. KNOWLEDGE CHECK (10 questions) === -->
+            <h2>E. Knowledge & Skills Check</h2>
+            <div class="sub-section">
+                <label>E1. When you save a file to your computer's Desktop, where is it stored?</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E1" value="On the computer itself"> <label>B. On the computer itself, inside its memory</label></div></div>
+                <label>E2. The internet is down tomorrow. Which will STILL work?</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E2" value="Document saved on Desktop"> <label>B. Opening a document saved on your Desktop</label></div></div>
+                <label>E3. When you ask ChatGPT/DeepSeek, how does it produce an answer?</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E3" value="Generates new text based on patterns"> <label>B. Generates new text based on patterns learned from large amounts of writing</label></div></div>
+                <label>E4. Teacher asks AI "What did my students struggle with today?" AI most likely:</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E4" value="Make up an answer"> <label>C. Make up an answer that sounds reasonable but is not based on real information</label></div></div>
+                <label>E5. AI gives excellent lesson plan. Best next step?</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E5" value="Check facts and adjust"> <label>C. Check the facts and adjust for your students and syllabus</label></div></div>
+                <label>E6. SAFEST to type into an AI tool?</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E6" value="General question"> <label>C. A general question like 'Explain photosynthesis for Form 2 simply'</label></div></div>
+                <label>E7. Most reliable for current info on Tanzania's Form 2 syllabus?</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E7" value="TIE official website"> <label>B. Visit the Tanzania Institute of Education (TIE) official website</label></div></div>
+                <label>E8. Students view lesson page on phones at home. Page must be:</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E8" value="Published online with URL"> <label>C. Published online with a public web address (URL / link)</label></div></div>
+                <label>E9. In AI-augmented lesson, human teacher MOST needed for:</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E9" value="Noticing student emotions"> <label>C. Noticing when a student looks confused, tired, or upset</label></div></div>
+                <label>E10. Power goes out during AI lesson. BEST prepared response:</label>
+                <div class="options-group"><div class="option-item"><input type="radio" name="E10" value="Paper backup plan"> <label>B. Continue with a paper backup plan you prepared in advance</label></div></div>
+            </div>
+
+            <!-- === F1. ASPIRATIONS === -->
+            <h2>F1. What do you most hope to learn here? (Select up to 3)</h2>
+            <div class="options-group">
+                <div class="option-item"><input type="checkbox" value="Use computer confidently"> <label>Use a computer confidently</label></div>
+                <div class="option-item"><input type="checkbox" value="Use AI to prepare lessons"> <label>Use AI to prepare lessons</label></div>
+                <div class="option-item"><input type="checkbox" value="Use AI during teaching"> <label>Use AI during teaching</label></div>
+                <div class="option-item"><input type="checkbox" value="Build my own teaching webpage"> <label>Build my own teaching webpage</label></div>
+                <div class="option-item"><input type="checkbox" value="Make lessons more engaging"> <label>Make lessons more engaging</label></div>
+                <div class="option-item"><input type="checkbox" value="Use AI safely"> <label>Use AI safely</label></div>
+                <div class="option-item"><input type="checkbox" value="Connect with teacher network"> <label>Connect with a teacher network</label></div>
+            </div>
+
+            <!-- === F2. ATTITUDES toward AI === -->
+            <h2>F2. Attitudes toward AI in Education</h2>
+            <div class="scrollable">
+                <table class="likert-table" id="attitudesTable">
+                    <thead><tr><th>Statement</th><th>1<br>Strongly Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly Agree</th></tr></thead>
+                    <tbody id="attitudesBody"></tbody>
+                </table>
+            </div>
+
+            <!-- === F3. DIGITAL AGENCY === -->
+            <h2>★ F3. Digital Agency</h2>
+            <div class="scrollable">
+                <table class="likert-table" id="digitalAgencyTable">
+                    <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+                    <tbody id="agencyBody"></tbody>
+                </table>
+            </div>
+
+            <!-- === F4. BARRIERS === -->
+            <h2>F4. What might prevent you from using AI after this training? (Select all)</h2>
+            <div class="options-group">
+                <div class="option-item"><input type="checkbox" value="Unreliable electricity"> <label>Unreliable electricity</label></div>
+                <div class="option-item"><input type="checkbox" value="Unreliable internet"> <label>Unreliable internet</label></div>
+                <div class="option-item"><input type="checkbox" value="No personal computer"> <label>No personal computer</label></div>
+                <div class="option-item"><input type="checkbox" value="Not enough time"> <label>Not enough time</label></div>
+                <div class="option-item"><input type="checkbox" value="Won't remember steps"> <label>Won't remember the steps</label></div>
+                <div class="option-item"><input type="checkbox" value="Worry AI gives wrong info"> <label>Worry AI gives wrong info</label></div>
+                <div class="option-item"><input type="checkbox" value="No support from admin"> <label>No support from admin</label></div>
+                <div class="option-item"><input type="checkbox" value="No obstacles expected"> <label>No obstacles expected</label></div>
+            </div>
+
+            <!-- === F5. OPEN-ENDED === -->
+            <h2>F5. If you had AI in your classroom every day, what is one thing you would teach differently?</h2>
+            <textarea rows="3" id="teachDifferently" placeholder="Share your thoughts... (optional)"></textarea>
+
+            <button type="submit" class="btn">📌 SUBMIT COMPLETE PRE-TRAINING SURVEY</button>
+        </form>
+
+        <div class="flex-buttons">
+            <button id="exportBtn" class="btn btn-secondary">📎 EXPORT ALL DATA (CSV)</button>
+            <button id="clearDataBtn" class="btn btn-secondary">🗑️ CLEAR ALL RECORDS</button>
+        </div>
+        <div id="dataStatus" class="status-badge"></div>
+        <footer>🔒 All data stored locally in your browser. Trainer: click EXPORT to download CSV file.</footer>
+    </div>
+</div>
+
+<script>
+    // Generate Likert tables dynamically
+    const efficacyStatements = [
+        "D1. I feel confident teaching my subject.",
+        "D2. I feel confident handling unexpected situations in my classroom.",
+        "D3. I feel confident using a computer for my work.",
+        "D4. I feel confident learning a new technology on my own.",
+        "D5. When I struggle with technology, I am confident I can find a solution.",
+        "D6. I feel confident using AI tools to prepare my lessons.",
+        "D7. I feel confident using AI tools during my classroom teaching.",
+        "D8. I feel confident judging whether an AI's answer is correct or useful.",
+        "D9. I feel confident designing a lesson that combines my teaching with AI.",
+        "D10. I feel confident helping a colleague learn to use AI for teaching."
+    ];
+
+    const attitudeStatements = [
+        "F2a. AI tools will make my teaching better.",
+        "F2b. AI tools will help my students learn better.",
+        "F2c. AI tools will save me time in lesson preparation.",
+        "F2d. AI in teaching is appropriate for rural schools like mine.",
+        "F2e. I worry that AI might replace teachers in the future."
+    ];
+
+    const agencyStatements = [
+        "DA1. I prefer to CREATE my own teaching materials rather than use ready-made content.",
+        "DA2. I believe rural teachers like me can become AI content PRODUCERS, not just users.",
+        "DA3. When I learn something useful, I feel a strong urge to share it with other teachers."
+    ];
+
+    function buildLikertRows(containerId, statements, namePrefix) {
+        const tbody = document.getElementById(containerId);
+        if (!tbody) return;
+        statements.forEach((statement, idx) => {
+            const row = document.createElement('tr');
+            const tdStatement = document.createElement('td');
+            tdStatement.textContent = statement;
+            row.appendChild(tdStatement);
+            for (let val = 1; val <= 5; val++) {
+                const td = document.createElement('td');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `${namePrefix}_${idx + 1}`;
+                radio.value = val;
+                td.appendChild(radio);
+                row.appendChild(td);
+            }
+            tbody.appendChild(row);
+        });
+    }
+
+    buildLikertRows('likertBody', efficacyStatements, 'D');
+    buildLikertRows('attitudesBody', attitudeStatements, 'F2');
+    buildLikertRows('agencyBody', agencyStatements, 'DA');
+
+    const STORAGE_KEY = 'SAY_Complete_Pre_2026';
+
+    function loadData() { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+    function saveData(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); updateStatus(); }
+    function updateStatus() { 
+        let cnt = loadData().length;
+        document.getElementById('dataStatus').innerHTML = cnt ? `✅ ${cnt} complete entries stored.` : '📭 No data yet. Submit the form.';
+    }
+
+    function getLikertValues(prefix, count) {
+        let values = {};
+        for (let i = 1; i <= count; i++) {
+            let selected = document.querySelector(`input[name="${prefix}_${i}"]:checked`);
+            values[`${prefix}${i}`] = selected ? selected.value : null;
+        }
+        return values;
+    }
+
+    function getCheckboxValues(selector) {
+        let checked = document.querySelectorAll(selector);
+        return Array.from(checked).map(cb => cb.value).join(', ');
+    }
+
+    function collectFullData() {
+        if (!document.getElementById('consent1').checked) { alert("You must consent to participate."); return null; }
+        let trainingId = document.getElementById('trainingId').value.trim();
+        let fullName = document.getElementById('fullName').value.trim();
+        let school = document.getElementById('school').value.trim();
+        if (!trainingId || !fullName || !school) { alert("Training ID, Full Name and School are required."); return null; }
+        
+        let genderVal = document.querySelector('input[name="gender"]:checked')?.value;
+        if (genderVal === 'Other') genderVal = "Other: " + document.getElementById('genderOther').value;
+
+        return {
+            trainingId, fullName, school,
+            subjects: document.getElementById('subjects').value,
+            age: document.querySelector('input[name="age"]:checked')?.value,
+            experience: document.querySelector('input[name="experience"]:checked')?.value,
+            gender: genderVal,
+            oneWord: document.getElementById('oneWord').value,
+            userCreator: document.querySelector('input[name="userCreator"]:checked')?.value,
+            devices: getCheckboxValues('#preSurveyForm input[type="checkbox"]', 'Devices'),
+            electricity: document.querySelector('input[name="electricity"]:checked')?.value,
+            aiExperience: document.querySelector('input[name="aiExperience"]:checked')?.value,
+            prepMethods: getCheckboxValues('#preSurveyForm input[type="checkbox"]', 'PrepMethods'),
+            challenges: getCheckboxValues('#preSurveyForm input[type="checkbox"]', 'Challenges'),
+            selfEfficacy: getLikertValues('D', 10),
+            knowledge: { E1: document.querySelector('input[name="E1"]:checked')?.value, E2: document.querySelector('input[name="E2"]:checked')?.value, E3: document.querySelector('input[name="E3"]:checked')?.value, E4: document.querySelector('input[name="E4"]:checked')?.value, E5: document.querySelector('input[name="E5"]:checked')?.value, E6: document.querySelector('input[name="E6"]:checked')?.value, E7: document.querySelector('input[name="E7"]:checked')?.value, E8: document.querySelector('input[name="E8"]:checked')?.value, E9: document.querySelector('input[name="E9"]:checked')?.value, E10: document.querySelector('input[name="E10"]:checked')?.value },
+            hopes: getCheckboxValues('#preSurveyForm input[type="checkbox"]', 'Hopes'),
+            attitudes: getLikertValues('F2', 5),
+            digitalAgency: getLikertValues('DA', 3),
+            barriers: getCheckboxValues('#preSurveyForm input[type="checkbox"]', 'Barriers'),
+            teachDifferently: document.getElementById('teachDifferently').value,
+            timestamp: new Date().toISOString()
+        };
+    }
+
+    document.getElementById('fullSurveyForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        let record = collectFullData();
+        if (record) {
+            let all = loadData();
+            all.push(record);
+            saveData(all);
+            alert(`✅ Thank you ${record.fullName}! Your complete pre-training survey has been saved.`);
+            window.location.reload();
+        }
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+        let data = loadData();
+        if (!data.length) { alert('No data to export'); return; }
+        let headers = ['TrainingID', 'FullName', 'School', 'Subjects', 'Age', 'Experience', 'Gender', 'OneWord', 'UserOrCreator', 'Devices', 'Electricity', 'AI_Experience', 'PrepMethods', 'Challenges', 'D1','D2','D3','D4','D5','D6','D7','D8','D9','D10','E1','E2','E3','E4','E5','E6','E7','E8','E9','E10','Hopes','F2a','F2b','F2c','F2d','F2e','DA1','DA2','DA3','Barriers','TeachDifferently','Timestamp'];
+        let rows = data.map(r => [
+            r.trainingId, r.fullName, r.school, r.subjects, r.age, r.experience, r.gender, r.oneWord, r.userCreator, r.devices, r.electricity, r.aiExperience, r.prepMethods, r.challenges,
+            r.selfEfficacy?.D1, r.selfEfficacy?.D2, r.selfEfficacy?.D3, r.selfEfficacy?.D4, r.selfEfficacy?.D5, r.selfEfficacy?.D6, r.selfEfficacy?.D7, r.selfEfficacy?.D8, r.selfEfficacy?.D9, r.selfEfficacy?.D10,
+            r.knowledge?.E1, r.knowledge?.E2, r.knowledge?.E3, r.knowledge?.E4, r.knowledge?.E5, r.knowledge?.E6, r.knowledge?.E7, r.knowledge?.E8, r.knowledge?.E9, r.knowledge?.E10,
+            r.hopes, r.attitudes?.F2_1, r.attitudes?.F2_2, r.attitudes?.F2_3, r.attitudes?.F2_4, r.attitudes?.F2_5,
+            r.digitalAgency?.DA_1, r.digitalAgency?.DA_2, r.digitalAgency?.DA_3, r.barriers, r.teachDifferently, r.timestamp
+        ]);
+        let csv = [headers.map(h => `"${h.replace(/"/g, '""')}"`).join(',')];
+        rows.forEach(row => { csv.push(row.map(cell => `"${String(cell || '').replace(/"/g, '""')}"`).join(',')); });
+        let blob = new Blob(["\uFEFF" + csv.join('\n')], { type: 'text/csv' });
+        let a = document.createElement('a'), url = URL.createObjectURL(blob);
+        a.href = url; a.download = `SAY_Complete_Pre_${Date.now()}.csv`; a.click(); URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('clearDataBtn').addEventListener('click', () => {
+        if (confirm('⚠️ Permanently delete ALL feedback data?')) { localStorage.removeItem(STORAGE_KEY); updateStatus(); alert('Cleared.'); }
+    });
+    updateStatus();
+</script>
+</body>
+</html>
